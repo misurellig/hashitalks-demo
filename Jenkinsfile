@@ -7,7 +7,7 @@ node() {
       def WRAPPED_SID = ""
       env.WRAPPED_SID = sh(
         returnStdout: true,
-        script: "${VAULT_BIN} write -f auth/pipeline/role/pipeline-approle/secret-id"
+        script: "${VAULT_BIN} write -field=wrapping_token -wrap-ttl=200s -f auth/pipeline/role/pipeline-approle/secret-id"
       )
     }
     stage ("Get Role ID for the pipeline AppRole") {
